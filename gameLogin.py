@@ -18,12 +18,12 @@ class gameLogin():
 		self.password = Entry(self.page, show='*', font=(('微软雅黑', 14)))
 		self.username.place(relx=0.5, rely=0.5, anchor=CENTER)
 		self.password.place(relx=0.5, rely=0.6, anchor=CENTER)
-		Button(self.page, text='登录', width=13, height=2, command=self.signIncheck).place(relx=0.35, rely=0.7, anchor=CENTER)
-		Button(self.page, text='忘记密码', width=13, height=2, command=self.signtip).place(relx=0.65, rely=0.7, anchor=CENTER)
+		Button(self.page, text='登录', width=13, height=2, command=self.signIncheck).place(relx=0.36, rely=0.7, anchor=CENTER)
+		Button(self.page, text='忘记密码', width=13, height=2, command=self.infotip1).place(relx=0.64, rely=0.7, anchor=CENTER)
 
 	def signIncheck(self):
 		#用户输入
-		dict1207 = [['liuhouhu', 'liuhouhu1'], ['luojingyu', 'luojingyu2'], ['quhong', 'quhong3'], ['renyinghui', 'renyinghui4'], ['wangxinzhe', 'wangxinzhe5'], ['wangzheng', 'wangzheng6'], ['','']]
+		dict1207 = [['liuhouhu', 'liuhouhu1'], ['luojingyu', 'luojingyu2'], ['quhong', 'quhong3'], ['renyinghui', 'renyinghui4'], ['wangxinzhe', 'wangxinzhe5'], ['wangzheng', 'wangzheng6']]
 		name = self.username.get()
 		passpord = self.password.get()
 		nameAndPass = [name, passpord]
@@ -33,6 +33,31 @@ class gameLogin():
 			GameGuide(self.root)
 		else: #提示密码错误
 			showwarning(title='Hi', message='用户名或密码错误！')
+
+
+
+	def infotip1(self):
+		self.infotiproot = Toplevel()
+		self.infotiproot.geometry('300x200')
+		self.infotiproot.title('tips')
+		self.infotiproot.resizable(width=False, height=False)
+		self.infotiproot.attributes("-toolwindow", True)
+		self.infotiproot.attributes("-topmost", True)
+		self.infotip = Frame(self.infotiproot, height=300, width=200)
+		self.infotip.pack()
+		Label(self.infotip, text='提示', font=('微软雅黑', 18), width=300, height=1).place(relx=0.5, rely=0.3, anchor=CENTER)
+		Label(self.infotip, text='用户名为姓名拼音\n密码为用户名加床号', font=('微软雅黑', 12), width=400, height=2).place(relx=0.5, rely=0.55, anchor=CENTER)
+		Button(self.infotip, text='确认', width=13, height=2, command=self.tipshutdown1).place(relx=0.5, rely=0.85, anchor=CENTER)
+
+
+		self.infotiproot.mainloop()
+
+	def tipshutdown1(self):
+		self.infotiproot.withdraw()
+
+
+
+
 
 	def signtip(self):
 		showinfo(title='Hi', message='用户名为姓名拼音，密码为用户名加床号。')
